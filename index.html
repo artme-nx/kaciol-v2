@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konoba Kaciol · Biograd na Moru — Brodet, peka i svježa riba</title>
+<meta name="description" content="Konoba Kaciol u Biogradu na Moru — domaća dalmatinska kuhinja, brodet, jela ispod peke i svježa riba. 4.6 ★ / 350 recenzija. Rezervirajte stol.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EC;
+    --clay:#F0E3CE;
+    --clay-deep:#E4D2B4;
+    --brick:#A8412A;
+    --brick-deep:#8A3220;
+    --amber:#C9892F;
+    --ink:#33271C;
+    --ink-soft:#5C4B3A;
+    --line:rgba(51,39,28,0.13);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Source Sans 3',sans-serif;
+    font-weight:400;
+    line-height:1.72;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'EB Garamond',serif;font-weight:500;line-height:1.1;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 36px;}
+  .eyebrow{font-weight:600;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brick);}
+
+  /* Header */
+  header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .5s ease;padding:24px 0;}
+  header.scrolled{background:rgba(251,246,236,.95);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:14px 0;}
+  .nav{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'EB Garamond',serif;font-size:1.8rem;font-weight:600;letter-spacing:.04em;color:var(--ink);transition:color .4s;}
+  header:not(.scrolled) .brand.on-hero{color:var(--cream);}
+  header:not(.scrolled) .nav-links a{color:rgba(251,246,236,.92);}
+  header:not(.scrolled) .menu-toggle{color:var(--cream);}
+  .nav-links{display:flex;gap:32px;align-items:center;}
+  .nav-links a{font-size:.84rem;letter-spacing:.04em;color:var(--ink-soft);transition:color .3s;font-weight:500;}
+  .nav-links a:hover{color:var(--brick);}
+  .btn-reserve{border:1.5px solid var(--brick);color:var(--brick)!important;padding:10px 20px;border-radius:30px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;transition:all .35s;}
+  header:not(.scrolled) .btn-reserve{border-color:var(--cream);color:var(--cream)!important;}
+  .btn-reserve:hover{background:var(--brick);border-color:var(--brick)!important;color:var(--cream)!important;}
+  .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink);}
+
+  /* Hero fullbleed */
+  .hero{position:relative;height:100vh;min-height:620px;overflow:hidden;display:flex;align-items:flex-end;}
+  .hero-bg{position:absolute;inset:0;z-index:0;}
+  .hero-bg img{transform:scale(1.12);transition:none;will-change:transform;}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(40,28,18,.82) 0%,rgba(40,28,18,.28) 45%,rgba(40,28,18,.42) 100%);}
+  .hero-inner{position:relative;z-index:2;padding-bottom:84px;color:var(--cream);width:100%;}
+  .hero-inner .eyebrow{color:var(--clay);display:block;margin-bottom:20px;}
+  .hero-inner h1{font-size:clamp(3rem,8vw,6.6rem);font-weight:500;max-width:16ch;margin-bottom:22px;letter-spacing:.005em;}
+  .hero-inner h1 em{font-style:italic;color:var(--amber);}
+  .hero-inner .lead{font-size:1.15rem;max-width:44ch;color:rgba(251,246,236,.9);margin-bottom:30px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .btn-solid{background:var(--brick);color:var(--cream);padding:15px 32px;border-radius:30px;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:all .35s;}
+  .btn-solid:hover{background:var(--brick-deep);transform:translateY(-2px);}
+  .btn-outline{border:1.5px solid rgba(251,246,236,.6);color:var(--cream);padding:14px 28px;border-radius:30px;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;transition:all .35s;}
+  .btn-outline:hover{background:rgba(251,246,236,.14);border-color:var(--cream);}
+
+  /* Stats / count-up bar */
+  .stats{background:var(--brick);color:var(--cream);}
+  .stats .wrap{display:flex;justify-content:center;gap:64px;padding:34px 36px;flex-wrap:wrap;text-align:center;}
+  .stat .num{font-family:'EB Garamond',serif;font-size:2.4rem;font-weight:600;line-height:1;}
+  .stat .lbl{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(251,246,236,.78);margin-top:6px;}
+
+  /* Intro */
+  .intro{padding:110px 0 90px;text-align:center;}
+  .intro .eyebrow{display:block;margin-bottom:24px;}
+  .intro h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:500;max-width:20ch;margin:0 auto 22px;}
+  .intro h2 em{font-style:italic;color:var(--brick);}
+  .intro p{max-width:54ch;margin:0 auto;color:var(--ink-soft);font-size:1.08rem;}
+
+  /* Section */
+  .section{padding:90px 0;}
+  .sec-head{text-align:center;margin-bottom:64px;}
+  .sec-head .eyebrow{display:block;margin-bottom:16px;}
+  .sec-head h2{font-size:clamp(2.2rem,4.6vw,3.6rem);font-weight:500;}
+  .sec-head h2 em{font-style:italic;color:var(--brick);}
+
+  /* Menu alternating rows */
+  .menu-row{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;background:var(--clay);border-radius:6px;overflow:hidden;margin-bottom:28px;}
+  .menu-row:nth-child(even){direction:rtl;}
+  .menu-row:nth-child(even) > *{direction:ltr;}
+  .menu-row .mr-img{height:100%;min-height:340px;overflow:hidden;clip-path:inset(0 0 0 0);}
+  .menu-row .mr-img img{transition:transform 1.4s cubic-bezier(.2,.6,.2,1);}
+  .menu-row:hover .mr-img img{transform:scale(1.06);}
+  .menu-row .mr-body{padding:44px 48px;display:flex;flex-direction:column;justify-content:center;}
+  .menu-row .mr-cat{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
+  .menu-dish{padding:14px 0;border-bottom:1px solid var(--line);}
+  .menu-dish:last-child{border-bottom:none;}
+  .menu-dish .d-name{font-family:'EB Garamond',serif;font-size:1.35rem;font-weight:600;}
+  .menu-dish .d-desc{font-size:.92rem;color:var(--ink-soft);}
+
+  /* Story split full-width band */
+  .story{background:var(--clay-deep);}
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;}
+  .story-img{height:100%;min-height:560px;overflow:hidden;}
+  .story-img img{transition:transform 1.6s cubic-bezier(.2,.6,.2,1);}
+  .story-img:hover img{transform:scale(1.05);}
+  .story-copy{padding:90px 7vw;}
+  .story-copy .eyebrow{display:block;margin-bottom:18px;}
+  .story-copy h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:500;margin-bottom:24px;}
+  .story-copy h2 em{font-style:italic;color:var(--brick);}
+  .story-copy p{margin-bottom:18px;color:var(--ink-soft);max-width:48ch;}
+  .story-copy .sign{font-family:'EB Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--brick);}
+
+  /* Gallery horizontal strip */
+  .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+  .gallery figure{height:240px;overflow:hidden;border-radius:5px;filter:sepia(.2) saturate(.95);transition:filter .6s;}
+  .gallery figure:hover{filter:sepia(0) saturate(1.05);}
+  .gallery figure.w2{grid-column:span 2;}
+  .gallery figure.h2{grid-row:span 2;height:auto;}
+  .gallery img{transition:transform 1.5s cubic-bezier(.2,.6,.2,1);}
+  .gallery figure:hover img{transform:scale(1.06);}
+
+  /* Location */
+  .location{background:var(--clay);}
+  .loc-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:0;align-items:stretch;}
+  .loc-info{padding:90px 6vw;}
+  .loc-info .eyebrow{display:block;margin-bottom:16px;}
+  .loc-info h2{font-size:clamp(2rem,4vw,3rem);font-weight:500;margin-bottom:30px;}
+  .loc-info h2 em{font-style:italic;color:var(--brick);}
+  .loc-block{margin-bottom:26px;}
+  .loc-block .lb-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brick);margin-bottom:6px;}
+  .loc-block p{color:var(--ink-soft);}
+  .loc-phone{font-family:'EB Garamond',serif;font-size:1.6rem;color:var(--brick)!important;display:inline-block;margin-top:4px;}
+  .hours-row{display:flex;justify-content:space-between;max-width:330px;padding:6px 0;border-bottom:1px dotted var(--line);}
+  .loc-cta{margin-top:14px;}
+  .map-wrap{min-height:520px;overflow:hidden;}
+  .map-wrap iframe{width:100%;height:100%;min-height:520px;border:0;filter:sepia(.2) saturate(.9);}
+
+  /* Footer */
+  footer{background:var(--ink);color:var(--cream);padding:78px 0 34px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:50px;}
+  footer .brand{color:var(--cream);font-size:2.1rem;margin-bottom:16px;display:block;}
+  footer p{color:rgba(251,246,236,.6);font-size:.94rem;max-width:34ch;}
+  .foot-col h4{font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;}
+  .foot-col a,.foot-col p{display:block;color:rgba(251,246,236,.78);font-size:.95rem;margin-bottom:10px;transition:color .3s;}
+  .foot-col a:hover{color:var(--amber);}
+  .foot-phone{font-family:'EB Garamond',serif;font-size:1.5rem;color:var(--cream)!important;}
+  .foot-bottom{border-top:1px solid rgba(251,246,236,.14);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem;color:rgba(251,246,236,.5);}
+
+  .reveal{opacity:0;transform:translateY(30px);}
+
+  @media(max-width:900px){
+    .nav-links{position:fixed;inset:0;background:var(--cream);flex-direction:column;justify-content:center;gap:28px;transform:translateX(100%);transition:transform .5s;z-index:1100;}
+    .nav-links.open{transform:translateX(0);}
+    .nav-links a{font-size:1.3rem;color:var(--ink)!important;}
+    .menu-toggle{display:block;z-index:1200;}
+    .stats .wrap{gap:36px;}
+    .menu-row,.menu-row:nth-child(even),.story-grid,.loc-grid{grid-template-columns:1fr;direction:ltr;}
+    .menu-row .mr-img,.story-img{min-height:280px;}
+    .menu-row .mr-body{padding:34px 30px;}
+    .gallery{grid-template-columns:repeat(2,1fr);}
+    .gallery figure.w2,.gallery figure.h2{grid-column:span 1;grid-row:span 1;height:240px;}
+    .story-copy,.loc-info{padding:60px 32px;}
+    .foot-grid{grid-template-columns:1fr;gap:34px;}
+    .wrap{padding:0 24px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    .reveal{opacity:1!important;transform:none!important;}
+    .hero-bg img{transform:none!important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+<header id="header">
+  <div class="wrap nav">
+    <a href="#" class="brand on-hero">Kaciol</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#intro">Konoba</a>
+      <a href="#menu">Jelovnik</a>
+      <a href="#story">Naša priča</a>
+      <a href="#gallery">Galerija</a>
+      <a href="#location">Kontakt</a>
+      <a href="#location" class="btn-reserve">Rezerviraj stol</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Izbornik">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg" id="heroBg">
+    <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=1900&q=80" alt="Brodet u loncu — domaća dalmatinska kuhinja" loading="eager">
+  </div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow">Konoba · Biograd na Moru</span>
+      <h1>Lonac koji se <em>vrti</em> od jutra.</h1>
+      <p class="lead">Brodet, jela ispod peke i svježa riba — domaća dalmatinska kuhinja kuhana strpljivo, kao kod kuće, na korak od mora.</p>
+      <div class="hero-actions">
+        <a href="#location" class="btn-solid">Rezerviraj stol</a>
+        <a href="#menu" class="btn-outline">Jelovnik</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="num" data-count="4.6" data-dec="1">4.6</div><div class="lbl">★ Ocjena gostiju</div></div>
+    <div class="stat"><div class="num" data-count="350" data-suffix="+">350+</div><div class="lbl">Recenzija</div></div>
+    <div class="stat"><div class="num">Domaće</div><div class="lbl">Svaki dan</div></div>
+  </div>
+</div>
+
+<section class="intro" id="intro">
+  <div class="wrap">
+    <span class="eyebrow reveal">Kaciol — kutlača</span>
+    <h2 class="reveal">Naziv smo posudili od <em>kacola</em> — kutlače kojom se generacijama miješa brodet i velikodušno dijeli jelo.</h2>
+    <p class="reveal">U Biogradu na Moru, gradu kraljevskih krunidbi i marine, vodimo konobu u kojoj se kuha onako kako se nekad kuhalo — polako, s mirisom mora i ognjišta. Bez žurbe, s punim loncem i otvorenim vratima.</p>
+  </div>
+</section>
+
+<section class="section" id="menu" style="padding-top:30px;">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Jelovnik</span>
+      <h2>Sa <em>mora</em> i ognjišta</h2>
+    </div>
+
+    <div class="menu-row reveal">
+      <div class="mr-img"><img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=900&q=80" alt="Brodet od ribe" loading="lazy"></div>
+      <div class="mr-body">
+        <div class="mr-cat">Iz lonca</div>
+        <div class="menu-dish"><div class="d-name">Brodet od miješane ribe s palentom</div><div class="d-desc">Naša okosnica — riba i škampi lagano kuhani u rajčici i bijelom vinu, uz mekanu palentu.</div></div>
+        <div class="menu-dish"><div class="d-name">Crni rižot s plodovima mora</div><div class="d-desc">Rižot bojan sipinim crnilom, sa svježim plodovima mora.</div></div>
+        <div class="menu-dish"><div class="d-name">Škampi na buzaru</div><div class="d-desc">Škampi u umaku od rajčice, češnjaka i vina, uz domaći kruh.</div></div>
+      </div>
+    </div>
+
+    <div class="menu-row reveal">
+      <div class="mr-img"><img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=900&q=80" alt="Jelo ispod peke" loading="lazy"></div>
+      <div class="mr-body">
+        <div class="mr-cat">Ispod peke</div>
+        <div class="menu-dish"><div class="d-name">Janjetina ispod peke</div><div class="d-desc">Janjetina i krumpir pečeni pod žeravicom, pripremamo na narudžbu.</div></div>
+        <div class="menu-dish"><div class="d-name">Hobotnica ispod peke</div><div class="d-desc">Hobotnica s krumpirom, maslinovim uljem i mirodijama — sočna i mekana.</div></div>
+        <div class="menu-dish"><div class="d-name">Teletina ispod peke</div><div class="d-desc">Mekana teletina s prilozima, pečena polako pod pekom.</div></div>
+      </div>
+    </div>
+
+    <div class="menu-row reveal">
+      <div class="mr-img"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80" alt="Svježa riba s gradela" loading="lazy"></div>
+      <div class="mr-body">
+        <div class="mr-cat">S gradela &amp; za početak</div>
+        <div class="menu-dish"><div class="d-name">Svježa riba dana</div><div class="d-desc">Ono što su ribari donijeli — na gradelama, s blitvom i maslinovim uljem.</div></div>
+        <div class="menu-dish"><div class="d-name">Dalmatinska pjat — pršut, sir i masline</div><div class="d-desc">Domaći pršut, ovčji sir iz okolice i masline u maslinovom ulju.</div></div>
+        <div class="menu-dish"><div class="d-name">Slane srdele na savur</div><div class="d-desc">Marinirane srdele s lukom i octom, po starom dalmatinskom receptu.</div></div>
+      </div>
+    </div>
+
+    <div class="menu-row reveal">
+      <div class="mr-img"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Domaći desert" loading="lazy"></div>
+      <div class="mr-body">
+        <div class="mr-cat">Za kraj</div>
+        <div class="menu-dish"><div class="d-name">Rožata</div><div class="d-desc">Tradicionalni dalmatinski kremasti desert s karamelom.</div></div>
+        <div class="menu-dish"><div class="d-name">Smokve u domaćem prošeku</div><div class="d-desc">Sušene smokve natopljene prošekom, uz badem.</div></div>
+        <div class="menu-dish"><div class="d-name">Domaći kolač od badema</div><div class="d-desc">Kolač po obiteljskom receptu, uz kavu ili rakiju.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="story-grid">
+    <div class="story-img reveal"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=80" alt="Topla unutrašnjost dalmatinske konobe" loading="lazy"></div>
+    <div class="story-copy">
+      <span class="eyebrow reveal">Naša priča</span>
+      <h2 class="reveal">Kuhinja koja se <em>pamti</em></h2>
+      <p class="reveal">Kaciol je počeo kao obiteljski stol u Biogradu na Moru. Ribu kupujemo od lokalnih ribara, povrće s okolnih polja, a recepte čuvamo onakvima kakvi su prešli s bake na unuke.</p>
+      <p class="reveal">Brodet treba svoje vrijeme, peka svoju žeravicu, a gost svoje mjesto za stolom. Ovdje se ne žuri — punimo lonac i otvaramo vrata, isto kao i prvog dana.</p>
+      <p class="reveal sign">— obitelj Kaciol, Biograd na Moru</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Galerija</span>
+      <h2>Trenuci za <em>stolom</em></h2>
+    </div>
+    <div class="gallery">
+      <figure class="w2 h2 reveal"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt="Konoba interijer" loading="lazy"></figure>
+      <figure class="reveal"><img src="https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?auto=format&fit=crop&w=500&q=80" alt="Plodovi mora" loading="lazy"></figure>
+      <figure class="reveal"><img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=500&q=80" alt="Maslinovo ulje i kruh" loading="lazy"></figure>
+      <figure class="w2 reveal"><img src="https://images.unsplash.com/photo-1505993597083-3bd19fb75e57?auto=format&fit=crop&w=800&q=80" alt="Biograd marina i more" loading="lazy"></figure>
+      <figure class="reveal"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80" alt="Riba na gradelama" loading="lazy"></figure>
+      <figure class="reveal"><img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=500&q=80" alt="Pečenje ispod peke" loading="lazy"></figure>
+      <figure class="w2 reveal"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Dalmatinsko jelo" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="loc-grid">
+    <div class="loc-info">
+      <span class="eyebrow reveal">Posjetite nas</span>
+      <h2 class="reveal">Tu smo, uz <em>more</em></h2>
+      <div class="loc-block reveal">
+        <div class="lb-label">Adresa</div>
+        <p>Biograd na Moru, Zadarska županija, Hrvatska</p>
+      </div>
+      <div class="loc-block reveal">
+        <div class="lb-label">Rezervacije</div>
+        <p>Stol rezervirajte pozivom — rado vam preporučimo jelo dana.</p>
+        <a href="tel:+385996785496" class="loc-phone">+385 99 678 5496</a>
+      </div>
+      <div class="loc-block reveal">
+        <div class="lb-label">Radno vrijeme</div>
+        <div class="hours-row"><span>Ponedjeljak – Petak</span><span>12:00 – 23:00</span></div>
+        <div class="hours-row"><span>Subota – Nedjelja</span><span>11:00 – 23:00</span></div>
+      </div>
+      <div class="loc-cta reveal">
+        <a href="tel:+385996785496" class="btn-solid">Rezerviraj stol</a>
+      </div>
+    </div>
+    <div class="map-wrap reveal">
+      <iframe src="https://maps.google.com/maps?q=Kaciol+Biograd+na+Moru&output=embed" loading="lazy" title="Kaciol — Biograd na Moru"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="brand">Kaciol</span>
+        <p>Topla dalmatinska konoba u Biogradu na Moru. Brodet, peka i svježa riba — kuhano strpljivo, servirano srcem.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Izbornik</h4>
+        <a href="#menu">Jelovnik</a>
+        <a href="#story">Naša priča</a>
+        <a href="#gallery">Galerija</a>
+        <a href="#location">Kontakt</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <a href="tel:+385996785496" class="foot-phone">+385 99 678 5496</a>
+        <a href="mailto:kaciolbiograd1@gmail.com">kaciolbiograd1@gmail.com</a>
+        <p>Biograd na Moru, Hrvatska</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Konoba Kaciol · Biograd na Moru</span>
+      <span>Domaća dalmatinska kuhinja · 4.6 ★ / 350 recenzija</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 60);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Count-up
+  function countUp(el){
+    const target = parseFloat(el.dataset.count);
+    const dec = parseInt(el.dataset.dec || '0');
+    const suffix = el.dataset.suffix || '';
+    let start = null;
+    const dur = 1400;
+    function step(t){
+      if(!start) start = t;
+      const p = Math.min((t-start)/dur, 1);
+      const ease = 1 - Math.pow(1-p, 3);
+      el.textContent = (target*ease).toFixed(dec) + suffix;
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = target.toFixed(dec) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  if(!reduce){
+    const lenis = new Lenis({ lerp:0.085, wheelMultiplier:0.95, smoothWheel:true });
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if(id.length > 1){ const el = document.querySelector(id); if(el){ e.preventDefault(); lenis.scrollTo(el, {offset:-60}); } }
+      });
+    });
+
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.to(el, { opacity:1, y:0, duration:1.1, ease:'power2.out', scrollTrigger:{ trigger:el, start:'top 88%' } });
+    });
+
+    // Hero slow zoom
+    gsap.to('#heroBg img', { scale:1.0, duration:2.4, ease:'power2.out' });
+    gsap.to('#heroBg', { yPercent:18, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true } });
+
+    // Count-up on view
+    document.querySelectorAll('.num[data-count]').forEach(el => {
+      ScrollTrigger.create({ trigger:'.stats', start:'top 85%', once:true, onEnter:()=>countUp(el) });
+    });
+  } else {
+    document.querySelectorAll('.num[data-count]').forEach(el => {
+      const dec = parseInt(el.dataset.dec || '0');
+      el.textContent = parseFloat(el.dataset.count).toFixed(dec) + (el.dataset.suffix||'');
+    });
+  }
+</script>
+</body>
+</html>
