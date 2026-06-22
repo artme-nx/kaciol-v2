@@ -397,7 +397,7 @@
   }
 
   if(!reduce){
-    const lenis = new Lenis({ lerp:0.085, wheelMultiplier:0.95, smoothWheel:true });
+    const lenis = new Lenis({lerp:0.2, wheelMultiplier:1, smoothWheel:true, syncTouch:false});
     function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
 
